@@ -1,10 +1,9 @@
 package com.example.lifecyclesdemo.viewmodel
 
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.*
 import com.example.lifecyclesdemo.model.LoginModel
 
-class LoginViewModel : ViewModel() {
+class LoginViewModel : ViewModel(), DefaultLifecycleObserver {
 
     // Model，数据源，获取数据的具体请求及方法
     private val loginModel  = LoginModel()
@@ -23,6 +22,14 @@ class LoginViewModel : ViewModel() {
     override fun onCleared() {
         loginModel.destroy()
         super.onCleared()
+    }
+
+    override fun onCreate(owner: LifecycleOwner) {
+        println("onCreate +++++++++++++++++++")
+    }
+
+    override fun onStop(owner: LifecycleOwner) {
+        println("onStop +++++++++++++++++++")
     }
 
 }

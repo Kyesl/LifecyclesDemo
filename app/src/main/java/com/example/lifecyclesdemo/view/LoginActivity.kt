@@ -31,6 +31,8 @@ class LoginActivity : AppCompatActivity() {
     private fun initViewModel () {
         // 通过ViewModelProvider获取对应class的ViewModel
         mLoginViewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
+        // LoginViewModel实现了LifecycleObserver接口，注册为lifecycle的观察者，LoginViewModel即可感知该Activity的生命周期
+        lifecycle.addObserver(mLoginViewModel)
     }
 
     private fun initLiveDataObserver () {
